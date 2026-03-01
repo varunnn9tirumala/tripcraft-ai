@@ -11,7 +11,10 @@
     "prebuild": "pnpm -r --if-present run prebuild",
     "pretest": "pnpm -r --if-present run prebuild",
     "start": "pnpm -r --if-present run start",
-    "test": "pnpm -r --if-present run test"
+    "test": "pnpm -r --if-present run test",
+    "dev": "vite",
+    "build" : "vite build",
+    "preview" :"vite preview"
   },
   "devDependencies": {
     "sharp": "^0.34.4"
