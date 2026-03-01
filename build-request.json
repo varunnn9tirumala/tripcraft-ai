@@ -1,0 +1,271 @@
+{
+  "kind": "build_request",
+  "title": "Add admin panel, analytics tracking, Indian domestic routes, and enhance Sarah AI chatbot",
+  "projectName": "Trip Craft Research",
+  "priority": "normal",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "text": "Add an 'Admin Panel' navigation button in the header that links to /admin route. The admin panel must require authentication using simple username/password credentials stored in the backend configuration. Use a single hardcoded admin account (do not use Internet Identity). Validate credentials through the backend before allowing access to the admin dashboard.",
+      "target": "both",
+      "source": {
+        "messageIds": [
+          "msg-5"
+        ],
+        "quotes": [
+          "Add an Admin Panel button in the header navigation bar that links to /admin",
+          "Admin panel must require login",
+          "Use single admin credentials stored in backend configuration",
+          "Only one admin account is required for the system"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Admin Panel button appears in header navigation",
+        "Clicking the button navigates to /admin route",
+        "Admin route is protected and requires authentication",
+        "Backend stores admin username/password in configuration",
+        "Admin credentials are not exposed in frontend code",
+        "Successful login grants access to admin dashboard"
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "text": "Store comprehensive user interaction data in the backend for every search session including: user name, user email, source city, destination city, generated package price, currency, initial satisfaction response (Yes/No), whether user opened Sarah AI (Yes/No), satisfaction after Sarah interaction (Yes/No), whether user proceeded to booking (Yes/No), and timestamp. This data must be persisted in backend storage and retrievable for analytics.",
+      "target": "backend",
+      "source": {
+        "messageIds": [
+          "msg-5"
+        ],
+        "quotes": [
+          "The backend must store the following data for every search session",
+          "User name, User email, Source city, Destination city, Generated package price, Currency, Was the user satisfied initially (Yes/No), Did the user open Sarah AI (Yes/No), Was the user satisfied after Sarah (Yes/No), Did the user proceed to booking (Yes/No), Timestamp"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Backend captures all required fields for each search session",
+        "Data includes user details, package details, satisfaction metrics, AI interaction status, and booking status",
+        "Timestamp is stored for each session",
+        "Data is persisted in backend stable storage",
+        "Data can be queried and retrieved for display in admin panel"
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "text": "Display all stored user interaction data in the Admin Panel dashboard. Show analytics including: list of all search sessions with user details, package details, satisfaction metrics before and after Sarah interaction, AI usage statistics, and booking conversion data. Enable analysis to compare users satisfied without Sarah AI versus users satisfied after interacting with Sarah.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-5"
+        ],
+        "quotes": [
+          "This information should appear in the Admin Panel dashboard",
+          "The admin dashboard must allow analysis of: Users satisfied without Sarah AI, Users satisfied after interacting with Sarah"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Admin dashboard displays all tracked user interaction data",
+        "Data is presented in a clear, readable format",
+        "Dashboard shows satisfaction metrics before and after AI interaction",
+        "Admin can analyze correlation between Sarah AI usage and user satisfaction",
+        "Dashboard supports research objective of measuring AI influence on decision-making"
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "text": "Add support for Indian domestic travel routes including the following airports: Mumbai (BOM), Bangalore (BLR), Hyderabad (HYD), Delhi (DEL), Chennai (MAA), Goa (GOI), Vijayawada (VGA), Kolkata (CCU), Pune (PNQ), and Ahmedabad (AMD). Ensure searches work properly for all domestic route combinations such as Mumbai to Bangalore, Hyderabad to Goa, and Bangalore to Vijayawada.",
+      "target": "both",
+      "source": {
+        "messageIds": [
+          "msg-5"
+        ],
+        "quotes": [
+          "Add support for Indian domestic routes including: Mumbai (BOM), Bangalore (BLR), Hyderabad (HYD), Delhi (DEL), Chennai (MAA), Goa (GOI), Vijayawada (VGA), Kolkata (CCU), Pune (PNQ), Ahmedabad (AMD)",
+          "Domestic searches such as: Mumbai → Bangalore, Hyderabad → Goa, Bangalore → Vijayawada must work properly"
+        ]
+      },
+      "acceptanceCriteria": [
+        "All 10 Indian airports are added to the cities/airports data",
+        "Users can search for any combination of domestic Indian routes",
+        "Search results are generated for Indian domestic routes",
+        "City autocomplete shows Indian cities with correct airport codes"
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "text": "Apply realistic pricing logic for Indian domestic travel. Use the following ranges: domestic India flights should cost between ₹3,000 and ₹9,000, and hotels should cost between ₹2,000 and ₹12,000 per night depending on tier. Ensure generated prices are realistic and fall within these ranges for Indian domestic routes.",
+      "target": "backend",
+      "source": {
+        "messageIds": [
+          "msg-5"
+        ],
+        "quotes": [
+          "Use realistic pricing ranges: Domestic India flights: ₹3000–₹9000, Hotels per night: ₹2000–₹12000",
+          "India domestic flights: ₹3000 – ₹9000, Hotels: ₹2000 – ₹12000 per night depending on tier"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Domestic Indian flight prices range between ₹3,000 and ₹9,000",
+        "Hotel prices range between ₹2,000 and ₹12,000 per night",
+        "Pricing varies based on route, dates, and accommodation tier",
+        "Generated prices are realistic and not unrealistically high or low"
+      ]
+    },
+    {
+      "id": "REQ-6",
+      "text": "Fix the 'Upgrade Package' button inside the Sarah chatbot. When clicked, Sarah should generate an upgraded package summary that adds 2-3 additional amenities (such as airport pickup, guided tour, breakfast, spa access, etc.) without changing the original package price. Display the upgraded package clearly to the user.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-5"
+        ],
+        "quotes": [
+          "The Upgrade Package button inside the Sarah chatbot is not working",
+          "When clicked, Sarah should generate an upgraded package summary",
+          "Add 2–3 additional amenities (airport pickup, guided tour, breakfast, etc.)",
+          "Do not change the original package price"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Upgrade Package button triggers Sarah to generate upgraded summary",
+        "Upgraded package includes 2-3 new amenities not in original package",
+        "Original package price remains unchanged",
+        "Upgraded amenities are relevant to the destination and travel type",
+        "Upgraded package is displayed clearly in the chat interface"
+      ]
+    },
+    {
+      "id": "REQ-7",
+      "text": "Implement rule-based intelligent responses for Sarah chatbot using keyword detection and intent matching. Sarah should detect user requests and suggest contextual improvements based on keywords: 'beach activity' suggests water sports or beach tours, 'romantic experience' suggests candlelight dinner or sunset cruise, 'adventure' suggests trekking or adventure parks, 'local experience' suggests guided city tours. Sarah should add 2-3 value enhancements to the package while keeping price unchanged and present the upgraded package summary clearly.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-7"
+        ],
+        "quotes": [
+          "Implement rule-based intelligent responses",
+          "Detect user intent using keyword matching",
+          "Generate contextual improvements based on: Destination, Travel type (beach / city / adventure), User request keywords",
+          "If user says: 'Add beach activity' → suggest water sports or beach tour",
+          "Sarah should: Add 2–3 value enhancements to the package, Keep price unchanged"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Sarah analyzes user messages for keywords and intent",
+        "Sarah provides contextual suggestions based on detected keywords",
+        "Beach-related requests trigger water sports or beach activity suggestions",
+        "Romantic requests trigger dinner or cruise suggestions",
+        "Adventure requests trigger trekking or adventure park suggestions",
+        "Local experience requests trigger guided tour suggestions",
+        "Enhanced package includes 2-3 new amenities",
+        "Package price remains unchanged after enhancements",
+        "Sarah presents upgraded package summary clearly"
+      ]
+    },
+    {
+      "id": "REQ-8",
+      "text": "Allow users to type custom requests in the Sarah chatbot interface. Sarah should respond contextually to user messages and suggest improvements to the package while keeping the price fixed. Implement text input functionality and message submission in the chat interface.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-5"
+        ],
+        "quotes": [
+          "Allow users to type custom requests",
+          "Sarah should respond contextually and suggest improvements to the package while keeping the price fixed"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Chat interface includes text input field for user messages",
+        "Users can type and submit custom requests",
+        "Sarah receives and processes user messages",
+        "Sarah responds contextually based on user input",
+        "Package enhancements maintain original price",
+        "Chat conversation flows naturally with user and assistant messages"
+      ]
+    },
+    {
+      "id": "REQ-9",
+      "text": "Adjust satisfaction popup timing to ensure the first popup appears approximately 8 seconds after the user sees the package details (giving time to read), and the second satisfaction popup should only appear after Sarah finishes showing package improvements and the user has time to review the enhanced package.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-5"
+        ],
+        "quotes": [
+          "Ensure the satisfaction popup appears only after the user has time to read the package details",
+          "First popup after ~8 seconds",
+          "Second popup only after Sarah finishes showing improvements"
+        ]
+      },
+      "acceptanceCriteria": [
+        "First satisfaction popup appears approximately 8 seconds after package details are displayed",
+        "User has sufficient time to read package before first popup",
+        "Second satisfaction popup only appears after Sarah interaction completes",
+        "Second popup timing accounts for Sarah displaying enhanced package",
+        "Popup timing feels natural and not intrusive to user experience"
+      ]
+    },
+    {
+      "id": "REQ-10",
+      "text": "Track when users open Sarah AI chatbot and record this interaction in the analytics data. Update the session record to mark that the user engaged with Sarah (Did user open Sarah: Yes). Ensure this metric is captured before the user interacts with the chat to measure AI engagement rates.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-5"
+        ],
+        "quotes": [
+          "Did the user open Sarah AI (Yes/No)",
+          "The admin dashboard must allow analysis of: Users satisfied without Sarah AI, Users satisfied after interacting with Sarah"
+        ]
+      },
+      "acceptanceCriteria": [
+        "When user opens Sarah chat popup, system records Sarah engagement",
+        "Analytics data includes 'Did user open Sarah' flag",
+        "Engagement is tracked before any chat interaction begins",
+        "Admin dashboard can differentiate between users who opened Sarah vs. those who did not"
+      ]
+    },
+    {
+      "id": "REQ-11",
+      "text": "Track booking conversions in analytics data. When a user proceeds to the booking confirmation page or completes a booking, record this action in the session data (Did user proceed to booking: Yes). Ensure this metric is available in the admin dashboard for conversion analysis.",
+      "target": "both",
+      "source": {
+        "messageIds": [
+          "msg-5"
+        ],
+        "quotes": [
+          "Did the user proceed to booking (Yes/No)",
+          "This will help evaluate whether AI improves user acceptance of travel packages"
+        ]
+      },
+      "acceptanceCriteria": [
+        "System tracks when user navigates to booking confirmation",
+        "Analytics data includes 'Did user proceed to booking' flag",
+        "Booking conversion is recorded in backend session data",
+        "Admin dashboard displays booking conversion rates",
+        "Booking data supports research analysis of AI impact on conversions"
+      ]
+    }
+  ],
+  "constraints": [
+    "Do not use Internet Identity for admin authentication; implement simple username/password",
+    "Do not integrate with external LLM APIs; use rule-based keyword matching for Sarah responses",
+    "Admin credentials must be stored in backend configuration, not exposed in frontend code",
+    "Sarah AI enhancements must not change the original package price",
+    "System must support only one admin account for this MVP",
+    "All Indian domestic routes must use INR currency with realistic pricing ranges"
+  ],
+  "nonGoals": [
+    "Multi-admin user management or role-based access control",
+    "Integration with real LLM APIs like OpenAI or Anthropic",
+    "Real-time price updates from external travel APIs",
+    "International route pricing adjustments beyond existing logic",
+    "Advanced analytics visualizations beyond basic dashboard tables",
+    "Password reset or account recovery flows for admin",
+    "Support for additional currencies beyond those already implemented"
+  ],
+  "imageRequirements": {
+    "required": [],
+    "edits": []
+  }
+}

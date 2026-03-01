@@ -1,0 +1,196 @@
+{
+  "kind": "feature_evidence_report",
+  "features": [
+    {
+      "featureId": "feature-add-an-admin-panel-navigation-button-in-the-header-that-links-to-admin-route-the-admin-panel-must-require-authentication-using-simple-username-password-credentials-stored-in-the-backend-configuration-use-a-single-hardcoded-admin-account-do-not-use-internet-identity-validate-credentials-through-the-backend-before-allowing-access-to-the-admin-dashboard",
+      "featureTitle": "Add an 'Admin Panel' navigation button in the header that links to /admin route. The admin panel must require authentication using simple username/password credentials stored in the backend configuration. Use a single hardcoded admin account (do not use Internet Identity). Validate credentials through the backend before allowing access to the admin dashboard.",
+      "files": [
+        "frontend/src/components/AdminLogin.tsx",
+        "frontend/src/components/Header.tsx",
+        "frontend/src/hooks/useAdminAuth.ts",
+        "frontend/src/pages/AdminPanel.tsx",
+        "frontend/src/pages/AdminSettings.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0",
+        "authorization@4.0.0",
+        "http-outcalls@3.0.0"
+      ],
+      "testIds": [
+        "REQ-1"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-display-all-stored-user-interaction-data-in-the-admin-panel-dashboard-show-analytics-including-list-of-all-search-sessions-with-user-details-package-details-satisfaction-metrics-before-and-after-sarah-interaction-ai-usage-statistics-and-booking-conversion-data-enable-analysis-to-compare-users-satisfied-without-sarah-ai-versus-users-satisfied-after-interacting-with-sarah",
+      "featureTitle": "Display all stored user interaction data in the Admin Panel dashboard. Show analytics including: list of all search sessions with user details, package details, satisfaction metrics before and after Sarah interaction, AI usage statistics, and booking conversion data. Enable analysis to compare users satisfied without Sarah AI versus users satisfied after interacting with Sarah.",
+      "files": [
+        "frontend/src/components/AnalyticsSummary.tsx",
+        "frontend/src/components/AnalyticsTable.tsx",
+        "frontend/src/hooks/useQueries.ts",
+        "frontend/src/pages/AdminPanel.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0",
+        "authorization@4.0.0",
+        "http-outcalls@3.0.0"
+      ],
+      "testIds": [
+        "REQ-3"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-support-for-indian-domestic-travel-routes-including-the-following-airports-mumbai-bom-bangalore-blr-hyderabad-hyd-delhi-del-chennai-maa-goa-goi-vijayawada-vga-kolkata-ccu-pune-pnq-and-ahmedabad-amd-ensure-searches-work-properly-for-all-domestic-route-combinations-such-as-mumbai-to-bangalore-hyderabad-to-goa-and-bangalore-to-vijayawada",
+      "featureTitle": "Add support for Indian domestic travel routes including the following airports: Mumbai (BOM), Bangalore (BLR), Hyderabad (HYD), Delhi (DEL), Chennai (MAA), Goa (GOI), Vijayawada (VGA), Kolkata (CCU), Pune (PNQ), and Ahmedabad (AMD). Ensure searches work properly for all domestic route combinations such as Mumbai to Bangalore, Hyderabad to Goa, and Bangalore to Vijayawada.",
+      "files": [
+        "frontend/src/data/cities.ts"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0",
+        "authorization@4.0.0",
+        "http-outcalls@3.0.0"
+      ],
+      "testIds": [
+        "REQ-4"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-fix-the-upgrade-package-button-inside-the-sarah-chatbot-when-clicked-sarah-should-generate-an-upgraded-package-summary-that-adds-2-3-additional-amenities-such-as-airport-pickup-guided-tour-breakfast-spa-access-etc-without-changing-the-original-package-price-display-the-upgraded-package-clearly-to-the-user",
+      "featureTitle": "Fix the 'Upgrade Package' button inside the Sarah chatbot. When clicked, Sarah should generate an upgraded package summary that adds 2-3 additional amenities (such as airport pickup, guided tour, breakfast, spa access, etc.) without changing the original package price. Display the upgraded package clearly to the user.",
+      "files": [
+        "frontend/src/components/SarahChatPopup.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0",
+        "authorization@4.0.0",
+        "http-outcalls@3.0.0"
+      ],
+      "testIds": [
+        "REQ-6"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-implement-rule-based-intelligent-responses-for-sarah-chatbot-using-keyword-detection-and-intent-matching-sarah-should-detect-user-requests-and-suggest-contextual-improvements-based-on-keywords-beach-activity-suggests-water-sports-or-beach-tours-romantic-experience-suggests-candlelight-dinner-or-sunset-cruise-adventure-suggests-trekking-or-adventure-parks-local-experience-suggests-guided-city-tours-sarah-should-add-2-3-value-enhancements-to-the-package-while-keeping-price-unchanged-and-present-the-upgraded-package-summary-clearly",
+      "featureTitle": "Implement rule-based intelligent responses for Sarah chatbot using keyword detection and intent matching. Sarah should detect user requests and suggest contextual improvements based on keywords: 'beach activity' suggests water sports or beach tours, 'romantic experience' suggests candlelight dinner or sunset cruise, 'adventure' suggests trekking or adventure parks, 'local experience' suggests guided city tours. Sarah should add 2-3 value enhancements to the package while keeping price unchanged and present the upgraded package summary clearly.",
+      "files": [
+        "frontend/src/components/SarahChatPopup.tsx",
+        "frontend/src/utils/keywordMatcher.ts"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0",
+        "authorization@4.0.0",
+        "http-outcalls@3.0.0"
+      ],
+      "testIds": [
+        "REQ-7"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-allow-users-to-type-custom-requests-in-the-sarah-chatbot-interface-sarah-should-respond-contextually-to-user-messages-and-suggest-improvements-to-the-package-while-keeping-the-price-fixed-implement-text-input-functionality-and-message-submission-in-the-chat-interface",
+      "featureTitle": "Allow users to type custom requests in the Sarah chatbot interface. Sarah should respond contextually to user messages and suggest improvements to the package while keeping the price fixed. Implement text input functionality and message submission in the chat interface.",
+      "files": [
+        "frontend/src/components/SarahChatPopup.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0",
+        "authorization@4.0.0",
+        "http-outcalls@3.0.0"
+      ],
+      "testIds": [
+        "REQ-8"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-adjust-satisfaction-popup-timing-to-ensure-the-first-popup-appears-approximately-8-seconds-after-the-user-sees-the-package-details-giving-time-to-read-and-the-second-satisfaction-popup-should-only-appear-after-sarah-finishes-showing-package-improvements-and-the-user-has-time-to-review-the-enhanced-package",
+      "featureTitle": "Adjust satisfaction popup timing to ensure the first popup appears approximately 8 seconds after the user sees the package details (giving time to read), and the second satisfaction popup should only appear after Sarah finishes showing package improvements and the user has time to review the enhanced package.",
+      "files": [
+        "frontend/src/pages/TripSummary.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0",
+        "authorization@4.0.0",
+        "http-outcalls@3.0.0"
+      ],
+      "testIds": [
+        "REQ-9"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-track-when-users-open-sarah-ai-chatbot-and-record-this-interaction-in-the-analytics-data-update-the-session-record-to-mark-that-the-user-engaged-with-sarah-did-user-open-sarah-yes-ensure-this-metric-is-captured-before-the-user-interacts-with-the-chat-to-measure-ai-engagement-rates",
+      "featureTitle": "Track when users open Sarah AI chatbot and record this interaction in the analytics data. Update the session record to mark that the user engaged with Sarah (Did user open Sarah: Yes). Ensure this metric is captured before the user interacts with the chat to measure AI engagement rates.",
+      "files": [
+        "frontend/src/components/SarahChatPopup.tsx",
+        "frontend/src/pages/TripSummary.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0",
+        "authorization@4.0.0",
+        "http-outcalls@3.0.0"
+      ],
+      "testIds": [
+        "REQ-10"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-track-booking-conversions-in-analytics-data-when-a-user-proceeds-to-the-booking-confirmation-page-or-completes-a-booking-record-this-action-in-the-session-data-did-user-proceed-to-booking-yes-ensure-this-metric-is-available-in-the-admin-dashboard-for-conversion-analysis",
+      "featureTitle": "Track booking conversions in analytics data. When a user proceeds to the booking confirmation page or completes a booking, record this action in the session data (Did user proceed to booking: Yes). Ensure this metric is available in the admin dashboard for conversion analysis.",
+      "files": [
+        "frontend/src/hooks/useQueries.ts",
+        "frontend/src/pages/BookingConfirmation.tsx",
+        "frontend/src/pages/TripSummary.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0",
+        "authorization@4.0.0",
+        "http-outcalls@3.0.0"
+      ],
+      "testIds": [
+        "REQ-11"
+      ],
+      "confidence": "high"
+    }
+  ]
+}

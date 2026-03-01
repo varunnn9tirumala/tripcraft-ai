@@ -1,0 +1,139 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectStateVersion": 3,
+  "summary": "Travel booking research application with admin panel, user interaction analytics tracking, Indian domestic routes support, and AI chatbot (Sarah) for package enhancement. Tracks user satisfaction metrics before and after AI interaction to measure AI influence on decision-making.",
+  "architectural_notes": [
+    "Admin authentication uses simple username/password stored in Motoko backend config (not Internet Identity)",
+    "Sarah AI uses rule-based keyword detection and contextual responses (no real-time LLM integration)",
+    "Analytics data stored in backend for research: tracks satisfaction before/after AI interaction",
+    "Domestic India pricing: flights ₹3000-9000, hotels ₹2000-12000 per night",
+    "Admin panel restricted to single admin account for research analytics only"
+  ],
+  "known_issues": [],
+  "isFixRequest": true,
+  "existing_features": [
+    {
+      "id": "feature-add-an-admin-panel-navigation-button-in-the-header-that-links-to-admin-route-the-admin-panel-must-require-authentication-using-simple-username-password-credentials-stored-in-the-backend-configuration-use-a-single-hardcoded-admin-account-do-not-use-internet-identity-validate-credentials-through-the-backend-before-allowing-access-to-the-admin-dashboard",
+      "title": "Add an 'Admin Panel' navigation button in the header that links to /admin route. The admin panel must require authentication using simple username/password credentials stored in the backend configuration. Use a single hardcoded admin account (do not use Internet Identity). Validate credentials through the backend before allowing access to the admin dashboard.",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-display-all-stored-user-interaction-data-in-the-admin-panel-dashboard-show-analytics-including-list-of-all-search-sessions-with-user-details-package-details-satisfaction-metrics-before-and-after-sarah-interaction-ai-usage-statistics-and-booking-conversion-data-enable-analysis-to-compare-users-satisfied-without-sarah-ai-versus-users-satisfied-after-interacting-with-sarah",
+      "title": "Display all stored user interaction data in the Admin Panel dashboard. Show analytics including: list of all search sessions with user details, package details, satisfaction metrics before and after Sarah interaction, AI usage statistics, and booking conversion data. Enable analysis to compare users satisfied without Sarah AI versus users satisfied after interacting with Sarah.",
+      "reqIds": [
+        "REQ-3"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-support-for-indian-domestic-travel-routes-including-the-following-airports-mumbai-bom-bangalore-blr-hyderabad-hyd-delhi-del-chennai-maa-goa-goi-vijayawada-vga-kolkata-ccu-pune-pnq-and-ahmedabad-amd-ensure-searches-work-properly-for-all-domestic-route-combinations-such-as-mumbai-to-bangalore-hyderabad-to-goa-and-bangalore-to-vijayawada",
+      "title": "Add support for Indian domestic travel routes including the following airports: Mumbai (BOM), Bangalore (BLR), Hyderabad (HYD), Delhi (DEL), Chennai (MAA), Goa (GOI), Vijayawada (VGA), Kolkata (CCU), Pune (PNQ), and Ahmedabad (AMD). Ensure searches work properly for all domestic route combinations such as Mumbai to Bangalore, Hyderabad to Goa, and Bangalore to Vijayawada.",
+      "reqIds": [
+        "REQ-4"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-fix-the-upgrade-package-button-inside-the-sarah-chatbot-when-clicked-sarah-should-generate-an-upgraded-package-summary-that-adds-2-3-additional-amenities-such-as-airport-pickup-guided-tour-breakfast-spa-access-etc-without-changing-the-original-package-price-display-the-upgraded-package-clearly-to-the-user",
+      "title": "Fix the 'Upgrade Package' button inside the Sarah chatbot. When clicked, Sarah should generate an upgraded package summary that adds 2-3 additional amenities (such as airport pickup, guided tour, breakfast, spa access, etc.) without changing the original package price. Display the upgraded package clearly to the user.",
+      "reqIds": [
+        "REQ-6"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-rule-based-intelligent-responses-for-sarah-chatbot-using-keyword-detection-and-intent-matching-sarah-should-detect-user-requests-and-suggest-contextual-improvements-based-on-keywords-beach-activity-suggests-water-sports-or-beach-tours-romantic-experience-suggests-candlelight-dinner-or-sunset-cruise-adventure-suggests-trekking-or-adventure-parks-local-experience-suggests-guided-city-tours-sarah-should-add-2-3-value-enhancements-to-the-package-while-keeping-price-unchanged-and-present-the-upgraded-package-summary-clearly",
+      "title": "Implement rule-based intelligent responses for Sarah chatbot using keyword detection and intent matching. Sarah should detect user requests and suggest contextual improvements based on keywords: 'beach activity' suggests water sports or beach tours, 'romantic experience' suggests candlelight dinner or sunset cruise, 'adventure' suggests trekking or adventure parks, 'local experience' suggests guided city tours. Sarah should add 2-3 value enhancements to the package while keeping price unchanged and present the upgraded package summary clearly.",
+      "reqIds": [
+        "REQ-7"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-allow-users-to-type-custom-requests-in-the-sarah-chatbot-interface-sarah-should-respond-contextually-to-user-messages-and-suggest-improvements-to-the-package-while-keeping-the-price-fixed-implement-text-input-functionality-and-message-submission-in-the-chat-interface",
+      "title": "Allow users to type custom requests in the Sarah chatbot interface. Sarah should respond contextually to user messages and suggest improvements to the package while keeping the price fixed. Implement text input functionality and message submission in the chat interface.",
+      "reqIds": [
+        "REQ-8"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-adjust-satisfaction-popup-timing-to-ensure-the-first-popup-appears-approximately-8-seconds-after-the-user-sees-the-package-details-giving-time-to-read-and-the-second-satisfaction-popup-should-only-appear-after-sarah-finishes-showing-package-improvements-and-the-user-has-time-to-review-the-enhanced-package",
+      "title": "Adjust satisfaction popup timing to ensure the first popup appears approximately 8 seconds after the user sees the package details (giving time to read), and the second satisfaction popup should only appear after Sarah finishes showing package improvements and the user has time to review the enhanced package.",
+      "reqIds": [
+        "REQ-9"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-track-when-users-open-sarah-ai-chatbot-and-record-this-interaction-in-the-analytics-data-update-the-session-record-to-mark-that-the-user-engaged-with-sarah-did-user-open-sarah-yes-ensure-this-metric-is-captured-before-the-user-interacts-with-the-chat-to-measure-ai-engagement-rates",
+      "title": "Track when users open Sarah AI chatbot and record this interaction in the analytics data. Update the session record to mark that the user engaged with Sarah (Did user open Sarah: Yes). Ensure this metric is captured before the user interacts with the chat to measure AI engagement rates.",
+      "reqIds": [
+        "REQ-10"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-track-booking-conversions-in-analytics-data-when-a-user-proceeds-to-the-booking-confirmation-page-or-completes-a-booking-record-this-action-in-the-session-data-did-user-proceed-to-booking-yes-ensure-this-metric-is-available-in-the-admin-dashboard-for-conversion-analysis",
+      "title": "Track booking conversions in analytics data. When a user proceeds to the booking confirmation page or completes a booking, record this action in the session data (Did user proceed to booking: Yes). Ensure this metric is available in the admin dashboard for conversion analysis.",
+      "reqIds": [
+        "REQ-11"
+      ],
+      "version": 1
+    }
+  ],
+  "new_feature_requests": [
+    {
+      "id": "AR-1",
+      "summary": "Admin panel with username/password authentication and analytics dashboard",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-2",
+      "summary": "Backend data tracking for research: user details, satisfaction metrics, AI interaction, booking status",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-3",
+      "summary": "Indian domestic travel routes support with realistic pricing (10 major airports)",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-4",
+      "summary": "Fix and enhance Sarah AI chatbot with rule-based responses and upgrade package functionality",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-5",
+      "summary": "Improve popup timing: first after 8 seconds, second after Sarah interaction",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-7",
+      "summary": "Store comprehensive user interaction data in the backend for every search session including: user name, user email, source city, destination city, generated package price, currency, initial satisfaction response (Yes/No), whether user opened Sarah AI (Yes/No), satisfaction after Sarah interaction (Yes/No), whether user proceeded to booking (Yes/No), and timestamp. This data must be persisted in backend storage and retrievable for analytics.",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-10",
+      "summary": "Apply realistic pricing logic for Indian domestic travel. Use the following ranges: domestic India flights should cost between ₹3,000 and ₹9,000, and hotels should cost between ₹2,000 and ₹12,000 per night depending on tier. Ensure generated prices are realistic and fall within these ranges for Indian domestic routes.",
+      "reqIds": [
+        "REQ-5"
+      ],
+      "status": "pending"
+    }
+  ],
+  "projectName": "Trip Craft Research",
+  "clarification_mode": "instant",
+  "clarification_rounds": 0
+}

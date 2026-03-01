@@ -1,0 +1,227 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "Add admin panel, analytics tracking, Indian domestic routes, and enhance Sarah AI chatbot",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "summary": "Add Admin Panel navigation button in header with route protection requiring username/password authentication",
+      "acceptanceCriteria": [
+        "Admin Panel button appears in header navigation",
+        "Clicking the button navigates to /admin route",
+        "Admin route is protected and requires authentication",
+        "Admin credentials are not exposed in frontend code",
+        "Successful login grants access to admin dashboard"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/Header.tsx",
+          "operation": "modify",
+          "description": "Add Admin Panel button to header navigation that links to /admin route. The button should be visible to all users but clicking it will navigate to the protected admin route. Update the existing admin dropdown logic to accommodate the new authentication flow."
+        },
+        {
+          "path": "frontend/src/components/AdminLogin.tsx",
+          "operation": "modify",
+          "description": "Replace the hardcoded MVP credentials with backend validation using the validateAdminCredentials backend method. Remove the simulated authentication delay and implement real credential validation through the backend. Store successful authentication state to enable access to admin routes."
+        },
+        {
+          "path": "frontend/src/hooks/useAdminAuth.ts",
+          "operation": "modify",
+          "description": "Update admin authentication logic to check for username/password session instead of relying solely on Internet Identity admin role. Add session storage or state management for tracking admin login status after successful credential validation."
+        },
+        {
+          "path": "frontend/src/pages/AdminPanel.tsx",
+          "operation": "modify",
+          "description": "Add authentication guard at the page level that checks for admin login status. If not authenticated, show the AdminLogin component instead of the dashboard content. After successful login via AdminLogin, display the admin dashboard."
+        },
+        {
+          "path": "frontend/src/pages/AdminSettings.tsx",
+          "operation": "modify",
+          "description": "Add authentication guard at the page level that checks for admin login status. If not authenticated, redirect to /admin or show login prompt. Ensure only authenticated admins can access settings."
+        }
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "summary": "Display comprehensive user interaction analytics in Admin Panel dashboard including satisfaction metrics, Sarah AI usage, and booking conversions",
+      "acceptanceCriteria": [
+        "Admin dashboard displays all tracked user interaction data",
+        "Data is presented in a clear, readable format",
+        "Dashboard shows satisfaction metrics before and after AI interaction",
+        "Admin can analyze correlation between Sarah AI usage and user satisfaction",
+        "Dashboard supports research objective of measuring AI influence on decision-making"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/hooks/useQueries.ts",
+          "operation": "modify",
+          "description": "Add a new React Query hook useGetBookingAnalytics that calls the getBookingAnalytics backend method to fetch all BookingSession records. Handle bigint to number conversion for timestamp and packagePrice fields. Return the analytics data with proper TypeScript types."
+        },
+        {
+          "path": "frontend/src/pages/AdminPanel.tsx",
+          "operation": "modify",
+          "description": "Replace or enhance the existing search history table with a comprehensive analytics dashboard. Use the useGetBookingAnalytics hook to fetch session data. Display a table showing: user name, user email, source city, destination city, package price with currency, initial satisfaction (Yes/No), opened Sarah AI (Yes/No), post-Sarah satisfaction (Yes/No), proceeded to booking (Yes/No), and timestamp. Add summary statistics showing: total sessions, satisfaction rate before Sarah, satisfaction rate after Sarah, Sarah usage rate, and booking conversion rate. Include filtering or sorting capabilities for analysis."
+        },
+        {
+          "path": "frontend/src/components/AnalyticsTable.tsx",
+          "operation": "create",
+          "description": "Create a new component to display booking analytics data in a sortable table format. Accept BookingSession array as props. Display columns for all tracked fields (userName, userEmail, sourceCity, destinationCity, packagePrice, currency, initialSatisfaction, openedSarahAI, postSarahSatisfaction, proceededToBooking, timestamp). Use formatCurrency utility for price display and formatDate for timestamps. Include boolean values as Yes/No text or icons."
+        },
+        {
+          "path": "frontend/src/components/AnalyticsSummary.tsx",
+          "operation": "create",
+          "description": "Create a component that displays summary statistics cards for the analytics dashboard. Calculate and display: total sessions count, initial satisfaction rate (percentage), post-Sarah satisfaction rate (percentage), Sarah AI engagement rate (percentage who opened Sarah), and booking conversion rate (percentage who proceeded to booking). Use card layout with clear labels and percentage formatting."
+        }
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "summary": "Add support for Indian domestic travel routes with 10 major airports for city selection and search",
+      "acceptanceCriteria": [
+        "All 10 Indian airports are added to the cities/airports data",
+        "Users can search for any combination of domestic Indian routes",
+        "Search results are generated for Indian domestic routes",
+        "City autocomplete shows Indian cities with correct airport codes"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/data/cities.ts",
+          "operation": "modify",
+          "description": "Add the following 10 Indian cities with their airport codes to the cities array: Mumbai (BOM), Bangalore (BLR), Hyderabad (HYD), Delhi (DEL), Chennai (MAA), Goa (GOI), Vijayawada (VGA), Kolkata (CCU), Pune (PNQ), and Ahmedabad (AMD). Ensure each city entry includes name, code, country (India), and display format matching existing entries."
+        }
+      ]
+    },
+    {
+      "id": "REQ-6",
+      "summary": "Fix Upgrade Package button in Sarah chatbot to generate upgraded package with 2-3 additional amenities without changing price",
+      "acceptanceCriteria": [
+        "Upgrade Package button triggers Sarah to generate upgraded summary",
+        "Upgraded package includes 2-3 new amenities not in original package",
+        "Original package price remains unchanged",
+        "Upgraded amenities are relevant to the destination and travel type",
+        "Upgraded package is displayed clearly in the chat interface"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/SarahChatPopup.tsx",
+          "operation": "modify",
+          "description": "Fix the Upgrade Package button click handler to generate and display an upgraded package. When clicked, add 2-3 new amenities to the current package amenities list (e.g., 'Airport Pickup Service', 'Guided City Tour', 'Complimentary Breakfast', 'Spa Access', 'Welcome Drink'). Keep the totalPrice unchanged. Display the upgraded package in the chat as a new assistant message showing the enhanced amenities list and confirming the price remains the same. Ensure the amenities are contextually appropriate and not duplicates of existing amenities."
+        }
+      ]
+    },
+    {
+      "id": "REQ-7",
+      "summary": "Implement rule-based intelligent responses for Sarah chatbot using keyword detection for contextual package improvements",
+      "acceptanceCriteria": [
+        "Sarah analyzes user messages for keywords and intent",
+        "Sarah provides contextual suggestions based on detected keywords",
+        "Beach-related requests trigger water sports or beach activity suggestions",
+        "Romantic requests trigger dinner or cruise suggestions",
+        "Adventure requests trigger trekking or adventure park suggestions",
+        "Local experience requests trigger guided tour suggestions",
+        "Enhanced package includes 2-3 new amenities",
+        "Package price remains unchanged after enhancements",
+        "Sarah presents upgraded package summary clearly"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/SarahChatPopup.tsx",
+          "operation": "modify",
+          "description": "Implement keyword detection and intent matching logic in the message handling. Create a keyword mapping that detects: 'beach' keywords (beach, water, surf, swim) → suggest water sports/beach tours, 'romantic' keywords (romantic, couple, honeymoon, anniversary) → suggest candlelight dinner/sunset cruise, 'adventure' keywords (adventure, trek, hike, thrill) → suggest trekking/adventure parks, 'local' keywords (local, culture, authentic, traditional) → suggest guided city tours. When user sends a message, scan for these keywords and generate appropriate amenity suggestions (2-3 items). Add the suggested amenities to the package without changing totalPrice. Display the enhanced package clearly in Sarah's response message."
+        },
+        {
+          "path": "frontend/src/utils/keywordMatcher.ts",
+          "operation": "create",
+          "description": "Create a utility module for keyword detection and intent matching. Export a function that takes user input text and returns matched intent category (beach, romantic, adventure, local, or null). Define keyword arrays for each category. Implement case-insensitive matching. Export a function that takes intent category and returns an array of 2-3 relevant amenity suggestions appropriate for that intent."
+        }
+      ]
+    },
+    {
+      "id": "REQ-8",
+      "summary": "Allow users to type custom requests in Sarah chatbot interface with text input and message submission",
+      "acceptanceCriteria": [
+        "Chat interface includes text input field for user messages",
+        "Users can type and submit custom requests",
+        "Sarah receives and processes user messages",
+        "Sarah responds contextually based on user input",
+        "Package enhancements maintain original price",
+        "Chat conversation flows naturally with user and assistant messages"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/SarahChatPopup.tsx",
+          "operation": "modify",
+          "description": "Add a text input field at the bottom of the chat popup with a send button. Implement controlled input state for the user message. On send button click or Enter key press, add the user message to the messages array, process it through the keyword matcher (from REQ-7), generate Sarah's contextual response with package enhancements if applicable, and add Sarah's response to messages. Clear the input field after sending. Ensure the chat scrolls to the latest message automatically."
+        }
+      ]
+    },
+    {
+      "id": "REQ-9",
+      "summary": "Adjust satisfaction popup timing to show first popup 8 seconds after package display and second popup after Sarah interaction completes",
+      "acceptanceCriteria": [
+        "First satisfaction popup appears approximately 8 seconds after package details are displayed",
+        "User has sufficient time to read package before first popup",
+        "Second satisfaction popup only appears after Sarah interaction completes",
+        "Second popup timing accounts for Sarah displaying enhanced package",
+        "Popup timing feels natural and not intrusive to user experience"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/TripSummary.tsx",
+          "operation": "modify",
+          "description": "Update the timing logic for satisfaction popups. Set the first satisfaction popup to appear 8 seconds after search results are displayed (when packages are loaded and visible). Ensure the second satisfaction popup only appears after the user has interacted with Sarah and closed the chat popup, giving them time to review the enhanced package. Use setTimeout with appropriate delays and cleanup on component unmount. Track whether Sarah chat was opened and only show the second popup if Sarah was used."
+        }
+      ]
+    },
+    {
+      "id": "REQ-10",
+      "summary": "Track when users open Sarah AI chatbot and record this interaction in analytics data",
+      "acceptanceCriteria": [
+        "When user opens Sarah chat popup, system records Sarah engagement",
+        "Analytics data includes 'Did user open Sarah' flag",
+        "Engagement is tracked before any chat interaction begins",
+        "Admin dashboard can differentiate between users who opened Sarah vs. those who did not"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/TripSummary.tsx",
+          "operation": "modify",
+          "description": "Add tracking logic that records when the Sarah chat popup is opened. When the user clicks to open Sarah (before any chat interaction), update the session tracking state to mark openedSarahAI as true. Ensure this flag is included when calling recordBookingConversion or similar analytics tracking. Store this state so it persists throughout the session and is sent with the final analytics data."
+        },
+        {
+          "path": "frontend/src/components/SarahChatPopup.tsx",
+          "operation": "modify",
+          "description": "Add an onOpen callback prop that is called when the popup becomes visible. The parent component (TripSummary) should use this callback to track the Sarah engagement event. Ensure the callback fires only once per session when Sarah is first opened."
+        }
+      ]
+    },
+    {
+      "id": "REQ-11",
+      "summary": "Track booking conversions when users proceed to booking confirmation page",
+      "acceptanceCriteria": [
+        "System tracks when user navigates to booking confirmation",
+        "Analytics data includes 'Did user proceed to booking' flag",
+        "Booking conversion is recorded in backend session data",
+        "Admin dashboard displays booking conversion rates",
+        "Booking data supports research analysis of AI impact on conversions"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/TripSummary.tsx",
+          "operation": "modify",
+          "description": "Update the booking navigation logic to call recordBookingConversion before navigating to the booking confirmation page. Collect all required analytics data: userName, userEmail, sourceCity, destinationCity, packagePrice, currency, initialSatisfaction, openedSarahAI, postSarahSatisfaction, and proceededToBooking (set to true). Determine if the user is authenticated (is_user) and get their user_id (principal or anonymous key). Call the recordBookingConversion backend method with all collected data before navigation."
+        },
+        {
+          "path": "frontend/src/pages/BookingConfirmation.tsx",
+          "operation": "modify",
+          "description": "Add a confirmation step or effect that ensures the booking conversion has been recorded. If the user arrives at this page directly (not from TripSummary), attempt to record the conversion using data from URL parameters or session storage. This ensures conversions are captured even if the user refreshes or navigates directly to this route."
+        },
+        {
+          "path": "frontend/src/hooks/useQueries.ts",
+          "operation": "modify",
+          "description": "Add a React Query mutation hook useRecordBookingConversion that wraps the recordBookingConversion backend method. Accept all required parameters (is_user, user_id, userName, userEmail, sourceCity, destinationCity, packagePrice, currency, initialSatisfaction, openedSarahAI, postSarahSatisfaction, proceededToBooking). Handle success and error states for use in TripSummary and BookingConfirmation components."
+        }
+      ]
+    }
+  ]
+}

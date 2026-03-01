@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "csvtojson": "^2.0.14",
+    "mongoose": "^9.2.2"
+  }
+}
