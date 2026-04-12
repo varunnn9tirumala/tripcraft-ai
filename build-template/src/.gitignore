@@ -7,3 +7,4 @@ build/
 .cache/
 coverage/
 echo "*.csv" >> .gitignore
+echo "allfiles.txt" >> .gitignore
